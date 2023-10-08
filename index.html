@@ -301,7 +301,9 @@
         // Função de utilidade para gerar números inteiros aleatórios
         const getRandomInt2 = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
       
-        // Função para gerar a sequência aleatória das peças
+        // Função para gerar a sequência aleatória das peças do Tetris,
+        //embaralhando a matriz original de peças "sequence" usando um loop
+        // e a técnica de desestruturação do array.
         const generateSequence2 = () => {
           const sequence = ['I', 'J', 'L', 'O', 'S', 'T', 'Z'];
           const shuffledSequence = [...sequence];
