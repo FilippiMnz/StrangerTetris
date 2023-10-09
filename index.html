@@ -428,19 +428,21 @@
        do jogo ter ou não sido finalizado, pelo primeiro "if" que analisa se os limites do jogo já foram ultrapassados, caso contrario
        é inserida uma peça na posição inicial da tela */
         const InjetarPecaTetris2 = () => {
-          tetromino2.matrix.map((row, rowIndex) => {
-              row.map((val, colIndex) => {
-                  if (val) {
-                      if (tetromino2.row + rowIndex < 0) {
-                          return showGameOver2();
-                      }
-  
-                      playfield2[tetromino2.row + rowIndex][tetromino2.col + colIndex] = tetromino2.name;
-                  }
-              });
+        tetromino2.matrix.map((row, rowIndex) => {
+          row.map((val, colIndex) => {
+            if (val) {
+              const targetRow = tetromino2.row + rowIndex;
+              const targetCol = tetromino2.col + colIndex;
+
+              if (targetRow >= playfield2.length || playfield2[targetRow][targetCol]) {
+                return showGameOver2(); // Chama showGameOver2 quando a peça colide no ponto mais baixo
+              }
+
+              playfield2[targetRow][targetCol] = tetromino2.name;
+            }
           });
-          // Variável para contar quantas linhas já foram quebradas, a medida que esse numero aumenta, é alterada  
-          // a pontuação do jogador
+        });
+          //variavel para contar quantas linhas ja foram quebradas
           let ColunasCheias = 0;
   
           playfield2.filter((row, rowIndex) => {
